@@ -1,12 +1,29 @@
 # ImageResize
 
-A CLI tool for Android (Termux) that resizes texture files to custom dimensions without locking the aspect ratio. It completely wipes out hidden metadata and canvas layout tags from software like Roblox exporters, preventing Blockbench from slicing your images in half on import.
+A Termux CLI tool for resizing single texture files or entire folders to custom dimensions while removing hidden metadata and canvas layout tags. This tool strips out the embedded canvas information blocks that cause software like Blockbench to slice imported textures in half.
 
-All resized images match their original filenames and are saved straight to `/sdcard/Pictures/ImageResizer`.
+## Prerequisites & Requirements
+
+1. **Get Termux from F-Droid**
+   Do NOT download Termux from the Google Play Store, as that version is abandoned and will throw network errors. Download the official, up-to-date app from F-Droid instead:
+   * [Download Termux on F-Droid](https://f-droid.org)
+
+2. **Grant Storage Access**
+   Before installing or using the tool, you must allow Termux to access your device storage. Open Termux and run:
+   ```bash
+   termux-setup-storage
+   ```
+   Tap Allow on the system popup that appears.
+
+3. **Install Git**
+   You need git installed to download the repository. Open Termux and run:
+   ```bash
+   pkg install git -y
+   ```
 
 ## Installation
 
-Run these commands in Termux to clone the repository and run the setup script:
+Once your storage permissions and git are configured, run these commands inside Termux to clone the repository and run the setup script:
 
 ```bash
 git clone https://github.com/zhyion071/ImageResize/
@@ -15,23 +32,17 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
+Restart your terminal session or run `source ~/.bashrc` to activate the path shortcut.
+
 ## How to Use
 
-You can run the script from any directory on your device.
-
-1. Type the global command:
+Run the shortcut command from any directory on your device:
 ```bash
-imageresizer
+imr
 ```
 
-2. When prompted, enter the full path to your file:
-```text
-Import File Path (e.g. /sdcard/textures/image.png): /sdcard/textures/my_texture.png
-```
+### Input Options:
+* **Single File:** Type or paste the full image file path (e.g., `/sdcard/textures/my_image.png`).
+* **Entire Folder:** Type or paste the full folder directory path (e.g., `/sdcard/textures/`).
 
-3. Enter your target resolution using 'x' as a separator:
-```text
-Enter size to resize? (e.g. 1024x1024): 1024x1024
-```
-
-The script will copy the pure pixels onto a sterile canvas, strip the header data, and drop the output file directly into your Pictures directory.
+All processed files retain their original filenames and are saved straight to `/sdcard/Pictures/ImageResizer/` as flat, metadata-free PNGs.
