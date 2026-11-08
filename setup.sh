@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 
-echo "Setting up Image Resizer dependencies..."
-pkg install python python-pillow -y
+echo "Installing core Python environment..."
+pkg install python -y
 
-# Create global binary link to execute from any path
+echo "Installing Pillow module via pip..."
+pip install pillow
+
+# Create global binary shortcut link named imr
 mkdir -p ~/bin
-cat << 'INNER_EOF' > ~/bin/imageresizer
+cat << 'INNER_EOF' > ~/bin/imr
 #!/usr/bin/env bash
-# This matches your exact repository casing on GitHub
 cd ~/ImageResize && python3 resizer.py
 INNER_EOF
 
-chmod +x ~/bin/imageresizer
+chmod +x ~/bin/imr
 export PATH="$HOME/bin:$PATH"
 if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
     echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 fi
 
-echo "Package installation complete! Try typing: imageresizer"
+echo "Package installation complete! Try typing: imr"
