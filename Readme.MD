@@ -9,7 +9,7 @@ All resized images match their original filenames and are saved straight to `/sd
 Run these commands in Termux to clone the repository and run the setup script:
 
 ```bash
-git clone https://github.com ~/ImageResize
+git clone https://github.com/zhyion071/ImageResize/
 cd ~/ImageResize
 chmod +x setup.sh
 ./setup.sh
