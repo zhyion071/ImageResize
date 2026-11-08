@@ -7,7 +7,8 @@ pkg install python python-pillow -y
 mkdir -p ~/bin
 cat << 'INNER_EOF' > ~/bin/imageresizer
 #!/usr/bin/env bash
-cd ~/ImageResize/ && python3 resizer.py
+# This matches your exact repository casing on GitHub
+cd ~/ImageResize && python3 resizer.py
 INNER_EOF
 
 chmod +x ~/bin/imageresizer
